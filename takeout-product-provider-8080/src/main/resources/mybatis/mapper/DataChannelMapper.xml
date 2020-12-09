@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lppz.cloud.dao.DataChannelMapper">
+    <resultMap id="baseResultMap" type="com.lppz.cloud.api.entities.DataChannel">
+        <id property="id" column="id"/>
+        <result property="c_platform" column="cPlatform"/>
+        <result property="c_platcode" column="cPlatcode"/>
+        <result property="c_platformname" column="cPlatformname"/>
+        <result property="c_channelid" column="cChannelid"/>
+        <result property="c_channelname" column="cChannelname"/>
+        <result property="c_scale_stock" column="cScaleStock"/>
+    </resultMap>
+
+    <select id="getDataChannelById" resultMap="baseResultMap">
+        select * from data_channel where id = #{id}
+    </select>
+
+    <insert id="insertDataChannel" useGeneratedKeys="true" keyProperty="id">
+            insert into data_channel(c_platform,c_platcode,c_platformname,c_channelid,c_channelname,c_scale_stock)
+            values(#{cPlatform},#{cPlatcode},#{cPlatformname},#{cChannelid},#{cChannelname},#{cScaleStock})
+    </insert>
+
+    <update id="updateDataChannel"  parameterType="com.lppz.cloud.api.entities.DataChannel">
+        update data_channel
+        <set>
+            <if test="cPlatformname !=null and cPlatformname !=''">
+                c_platformname = #{cPlatformname,jdbcType = VARCHAR},
+            </if>
+            <if test="cScaleStock !=null and cScaleStock !=''">
+                c_scale_stock = #{cScaleStock}
+            </if>
+        </set>
+        <where>
+            <if test="id !=null and id !=''">
+               and  id = #{id}
+            </if>
+            <if test="cChannelid !=null and cChannelid !=''">
+              and  c_channelid = #{cChannelid}
+            </if>
+
+        </where>
+    </update>
+    <delete id="deleteDataChannel" parameterType="com.lppz.cloud.api.entities.DataChannel">
+        delete from data_channel
+        <where>
+
+            <if test="id !=null and id !=''">
+                and  id = #{id}
+            </if>
+            <if test="cChannelid !=null and cChannelid !=''">
+                and  c_channelid = #{cChannelid}
+            </if>
+
+        </where>
+    </delete>
+
+</mapper>

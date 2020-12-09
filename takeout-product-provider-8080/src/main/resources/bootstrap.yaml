@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    nacos:
+     config:
+        fileExtension: yaml #配置中心dataid的yaml后缀的配置文件
+        group: takeout-product-provider
+        timeout: 10000 #10秒等待时间用于加载nacos配置中心的参数
+        server-addr: 10.101.3.3:8848 #nacos注册中心地址
+        refresh-enabled: false #关闭自动加载配置
+
+  #nacos的配置中心中dataid的格式${prefix}-${spring:profiles:active}:${file-extension}:
+  #默认是${prefix}-${spring:profiles:active}:${file-extension}:
+  application:
+    name: takeout-product-provider  #微服务对外暴露的名字    之所以需要配置 spring.application.name ，
+    #是因为它是构成 Nacos 配置管理 dataId字段的一部分。
+#  profiles:
+#    active: test

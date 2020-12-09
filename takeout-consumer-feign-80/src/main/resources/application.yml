@@ -1,0 +1,26 @@
+#server:
+#  undertow:
+#    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+#    # 每块buffer的空间大小,越小的空间被利用越充分
+#    buffer-size: 512
+#    # 是否分配的直接内存
+#    direct-buffers: true
+#    threads:
+#      io: 4  # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程
+#      worker: 32 # 阻塞任务线程池, io*8当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载
+#
+#spring:
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 10.101.3.3:8848  #nacos注册中心地址
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 5000 #连接超时时间
+#        readTimeout: 5000    #请求与响应的时间间隔阈值
+#  okhttp:
+#    enabled: true  #开启 okhttp client代替feign的默认client
+#  sentinel:
+#    enabled: true #开启Fegin对sentinel的支持
