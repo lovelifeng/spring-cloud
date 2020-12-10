@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lppz.cloud</groupId>
-    <artifactId>takout-api</artifactId>
+    <artifactId>takeout-api</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
