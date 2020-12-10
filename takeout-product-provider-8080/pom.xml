@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>com.lppz.cloud</groupId>
-            <artifactId>takout-api</artifactId>
+            <artifactId>takeout-api</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
